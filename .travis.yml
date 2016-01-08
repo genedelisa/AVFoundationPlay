@@ -1,0 +1,22 @@
+# file: .travis.yml
+language: objective-c
+
+before_install:
+- brew update
+- brew outdated xctool || brew upgrade xctool
+- gem install xcpretty -N
+
+
+script:
+
+# - xctool -project AVFoundationPlay.xcodeproj -scheme "AVFoundationPlay" -sdk iphoneos -configuration Debug -PBXBuildsContinueAfterErrors=0 test | xcpretty -c
+
+#- xctool -project AVFoundationPlay.xcodeproj -scheme "AVFoundationPlay" -sdk iphoneos9.0 -configuration Debug -destination "platform=OS X" -PBXBuildsContinueAfterErrors=0 test | xcpretty -c
+
+- xctool clean build -project AVFoundationPlay.xcodeproj -scheme AVFoundationPlay  | xcpretty -c
+- xctool test -project AVFoundationPlay.xcodeproj -scheme AVFoundationPlayTests  | xcpretty -c
+
+
+# http://docs.travis-ci.com/user/languages/objective-c/
+
+

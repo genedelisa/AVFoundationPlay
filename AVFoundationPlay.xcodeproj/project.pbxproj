@@ -14,6 +14,12 @@
 		B070D7101C400ACF005723B7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B070D70E1C400ACF005723B7 /* LaunchScreen.storyboard */; };
 		B070D71B1C400ACF005723B7 /* AVFoundationPlayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B070D71A1C400ACF005723B7 /* AVFoundationPlayTests.swift */; };
 		B070D7261C400ACF005723B7 /* AVFoundationPlayUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B070D7251C400ACF005723B7 /* AVFoundationPlayUITests.swift */; };
+		B070D7341C400AEE005723B7 /* Sound.swift in Sources */ = {isa = PBXBuildFile; fileRef = B070D7331C400AEE005723B7 /* Sound.swift */; };
+		B070D7361C400F92005723B7 /* modem-dialing-02.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B070D7351C400F92005723B7 /* modem-dialing-02.mp3 */; };
+		B070D73B1C401336005723B7 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = B070D7391C401336005723B7 /* README.md */; };
+		B070D73C1C401336005723B7 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = B070D73A1C401336005723B7 /* LICENSE */; };
+		B070D73F1C401453005723B7 /* .travis.yml in Resources */ = {isa = PBXBuildFile; fileRef = B070D73D1C401453005723B7 /* .travis.yml */; };
+		B070D7401C401453005723B7 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = B070D73E1C401453005723B7 /* .gitignore */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +53,12 @@
 		B070D7211C400ACF005723B7 /* AVFoundationPlayUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AVFoundationPlayUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B070D7251C400ACF005723B7 /* AVFoundationPlayUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVFoundationPlayUITests.swift; sourceTree = "<group>"; };
 		B070D7271C400ACF005723B7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B070D7331C400AEE005723B7 /* Sound.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sound.swift; sourceTree = "<group>"; };
+		B070D7351C400F92005723B7 /* modem-dialing-02.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "modem-dialing-02.mp3"; sourceTree = "<group>"; };
+		B070D7391C401336005723B7 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		B070D73A1C401336005723B7 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		B070D73D1C401453005723B7 /* .travis.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .travis.yml; sourceTree = "<group>"; };
+		B070D73E1C401453005723B7 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +89,11 @@
 		B070D6F91C400ACF005723B7 = {
 			isa = PBXGroup;
 			children = (
+				B070D73D1C401453005723B7 /* .travis.yml */,
+				B070D73E1C401453005723B7 /* .gitignore */,
+				B070D7391C401336005723B7 /* README.md */,
+				B070D73A1C401336005723B7 /* LICENSE */,
+				B070D7351C400F92005723B7 /* modem-dialing-02.mp3 */,
 				B070D7041C400ACF005723B7 /* AVFoundationPlay */,
 				B070D7191C400ACF005723B7 /* AVFoundationPlayTests */,
 				B070D7241C400ACF005723B7 /* AVFoundationPlayUITests */,
@@ -103,6 +120,7 @@
 				B070D70C1C400ACF005723B7 /* Assets.xcassets */,
 				B070D70E1C400ACF005723B7 /* LaunchScreen.storyboard */,
 				B070D7111C400ACF005723B7 /* Info.plist */,
+				B070D7331C400AEE005723B7 /* Sound.swift */,
 			);
 			path = AVFoundationPlay;
 			sourceTree = "<group>";
@@ -229,9 +247,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B070D73F1C401453005723B7 /* .travis.yml in Resources */,
+				B070D7401C401453005723B7 /* .gitignore in Resources */,
+				B070D7361C400F92005723B7 /* modem-dialing-02.mp3 in Resources */,
 				B070D7101C400ACF005723B7 /* LaunchScreen.storyboard in Resources */,
 				B070D70D1C400ACF005723B7 /* Assets.xcassets in Resources */,
 				B070D70B1C400ACF005723B7 /* Main.storyboard in Resources */,
+				B070D73C1C401336005723B7 /* LICENSE in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -257,6 +279,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				B070D7081C400ACF005723B7 /* ViewController.swift in Sources */,
+				B070D7341C400AEE005723B7 /* Sound.swift in Sources */,
+				B070D73B1C401336005723B7 /* README.md in Sources */,
 				B070D7061C400ACF005723B7 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

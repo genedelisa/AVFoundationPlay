@@ -10,8 +10,11 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    var sound:Sound!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        sound = Sound()
         // Do any additional setup after loading the view, typically from a nib.
     }
 
@@ -21,5 +24,8 @@ class ViewController: UIViewController {
     }
 
 
+    @IBAction func togglePlayer(sender: UIButton) {
+        sound.toggleAVPlayer()
+    }
 }
 
