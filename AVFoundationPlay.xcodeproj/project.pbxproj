@@ -16,10 +16,11 @@
 		B070D7261C400ACF005723B7 /* AVFoundationPlayUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B070D7251C400ACF005723B7 /* AVFoundationPlayUITests.swift */; };
 		B070D7341C400AEE005723B7 /* Sound.swift in Sources */ = {isa = PBXBuildFile; fileRef = B070D7331C400AEE005723B7 /* Sound.swift */; };
 		B070D7361C400F92005723B7 /* modem-dialing-02.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B070D7351C400F92005723B7 /* modem-dialing-02.mp3 */; };
-		B070D73B1C401336005723B7 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = B070D7391C401336005723B7 /* README.md */; };
 		B070D73C1C401336005723B7 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = B070D73A1C401336005723B7 /* LICENSE */; };
 		B070D73F1C401453005723B7 /* .travis.yml in Resources */ = {isa = PBXBuildFile; fileRef = B070D73D1C401453005723B7 /* .travis.yml */; };
 		B070D7401C401453005723B7 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = B070D73E1C401453005723B7 /* .gitignore */; };
+		B09CAD041FC7220D00F73166 /* .swift-version in Resources */ = {isa = PBXBuildFile; fileRef = B09CAD021FC7220D00F73166 /* .swift-version */; };
+		B09CAD051FC7220D00F73166 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = B09CAD031FC7220D00F73166 /* .swiftlint.yml */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +60,8 @@
 		B070D73A1C401336005723B7 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		B070D73D1C401453005723B7 /* .travis.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .travis.yml; sourceTree = "<group>"; };
 		B070D73E1C401453005723B7 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		B09CAD021FC7220D00F73166 /* .swift-version */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ".swift-version"; sourceTree = "<group>"; };
+		B09CAD031FC7220D00F73166 /* .swiftlint.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .swiftlint.yml; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +92,8 @@
 		B070D6F91C400ACF005723B7 = {
 			isa = PBXGroup;
 			children = (
+				B09CAD021FC7220D00F73166 /* .swift-version */,
+				B09CAD031FC7220D00F73166 /* .swiftlint.yml */,
 				B070D73D1C401453005723B7 /* .travis.yml */,
 				B070D73E1C401453005723B7 /* .gitignore */,
 				B070D7391C401336005723B7 /* README.md */,
@@ -150,6 +155,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B070D72A1C400ACF005723B7 /* Build configuration list for PBXNativeTarget "AVFoundationPlay" */;
 			buildPhases = (
+				B09CAD011FC721D200F73166 /* ShellScript */,
 				B070D6FE1C400ACF005723B7 /* Sources */,
 				B070D6FF1C400ACF005723B7 /* Frameworks */,
 				B070D7001C400ACF005723B7 /* Resources */,
@@ -206,11 +212,12 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0720;
-				LastUpgradeCheck = 0720;
+				LastUpgradeCheck = 0910;
 				ORGANIZATIONNAME = "Gene De Lisa";
 				TargetAttributes = {
 					B070D7011C400ACF005723B7 = {
 						CreatedOnToolsVersion = 7.2;
+						DevelopmentTeam = 4UDK2944TW;
 					};
 					B070D7151C400ACF005723B7 = {
 						CreatedOnToolsVersion = 7.2;
@@ -247,10 +254,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B09CAD051FC7220D00F73166 /* .swiftlint.yml in Resources */,
 				B070D73F1C401453005723B7 /* .travis.yml in Resources */,
 				B070D7401C401453005723B7 /* .gitignore in Resources */,
 				B070D7361C400F92005723B7 /* modem-dialing-02.mp3 in Resources */,
 				B070D7101C400ACF005723B7 /* LaunchScreen.storyboard in Resources */,
+				B09CAD041FC7220D00F73166 /* .swift-version in Resources */,
 				B070D70D1C400ACF005723B7 /* Assets.xcassets in Resources */,
 				B070D70B1C400ACF005723B7 /* Main.storyboard in Resources */,
 				B070D73C1C401336005723B7 /* LICENSE in Resources */,
@@ -273,6 +282,22 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		B09CAD011FC721D200F73166 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\nswiftlint\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		B070D6FE1C400ACF005723B7 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -280,7 +305,6 @@
 			files = (
 				B070D7081C400ACF005723B7 /* ViewController.swift in Sources */,
 				B070D7341C400AEE005723B7 /* Sound.swift in Sources */,
-				B070D73B1C401336005723B7 /* README.md in Sources */,
 				B070D7061C400ACF005723B7 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -344,13 +368,21 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -372,7 +404,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -389,13 +421,21 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -411,9 +451,10 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -423,10 +464,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 4UDK2944TW;
 				INFOPLIST_FILE = AVFoundationPlay/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.rockhoppertech.AVFoundationPlay;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -434,10 +477,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 4UDK2944TW;
 				INFOPLIST_FILE = AVFoundationPlay/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.rockhoppertech.AVFoundationPlay;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};
@@ -449,6 +494,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.rockhoppertech.AVFoundationPlayTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AVFoundationPlay.app/AVFoundationPlay";
 			};
 			name = Debug;
@@ -461,6 +507,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.rockhoppertech.AVFoundationPlayTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AVFoundationPlay.app/AVFoundationPlay";
 			};
 			name = Release;
@@ -472,6 +519,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.rockhoppertech.AVFoundationPlayUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
 				TEST_TARGET_NAME = AVFoundationPlay;
 				USES_XCTRUNNER = YES;
 			};
@@ -484,6 +532,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.rockhoppertech.AVFoundationPlayUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
 				TEST_TARGET_NAME = AVFoundationPlay;
 				USES_XCTRUNNER = YES;
 			};
@@ -508,6 +557,7 @@
 				B070D72C1C400ACF005723B7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		B070D72D1C400ACF005723B7 /* Build configuration list for PBXNativeTarget "AVFoundationPlayTests" */ = {
 			isa = XCConfigurationList;
@@ -516,6 +566,7 @@
 				B070D72F1C400ACF005723B7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		B070D7301C400ACF005723B7 /* Build configuration list for PBXNativeTarget "AVFoundationPlayUITests" */ = {
 			isa = XCConfigurationList;
@@ -524,6 +575,7 @@
 				B070D7321C400ACF005723B7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

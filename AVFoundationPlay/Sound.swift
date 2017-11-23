@@ -10,19 +10,24 @@ import Foundation
 import AVFoundation
 
 // AVAudioPlayerDelegate requires NSObjectProtocol
-class Sound : NSObject {
+class Sound: NSObject {
     
-    var avPlayer:AVAudioPlayer!
+    var avPlayer: AVAudioPlayer!
     
     override init() {
         super.init()
         readFileIntoAVPlayer()
+        addObservers()
+    }
+    
+    deinit {
+        removeObservers()
     }
     
     func setSessionPlayback() {
         let audioSession = AVAudioSession.sharedInstance()
         do {
-            try audioSession.setCategory(AVAudioSessionCategoryPlayAndRecord, withOptions: AVAudioSessionCategoryOptions.MixWithOthers)
+            try audioSession.setCategory(AVAudioSessionCategoryPlayAndRecord, with: .mixWithOthers)
             try audioSession.setActive(true)
         } catch {
             print("couldn't set category \(error)")
@@ -30,14 +35,14 @@ class Sound : NSObject {
     }
     
     func stopAVPLayer() {
-        if avPlayer.playing {
+        if avPlayer.isPlaying {
             avPlayer.stop()
         }
     }
     
     func toggleAVPlayer() {
-        print("is playing \(avPlayer.playing)")
-        if avPlayer.playing {
+        print("is playing \(avPlayer.isPlaying)")
+        if avPlayer.isPlaying {
             avPlayer.pause()
         } else {
             setSessionPlayback()
@@ -51,22 +56,19 @@ class Sound : NSObject {
      */
     func readFileIntoAVPlayer() {
         
-        guard let fileURL = NSBundle.mainBundle().URLForResource("modem-dialing-02", withExtension: "mp3") else {
+        guard let fileURL = Bundle.main.url(forResource: "modem-dialing-02", withExtension: "mp3") else {
             print("could not read sound file")
             return
         }
         
         do {
-            try self.avPlayer = AVAudioPlayer(contentsOfURL: fileURL)
+            try self.avPlayer = AVAudioPlayer(contentsOf: fileURL)
+            //try self.avPlayer = AVAudioPlayer(contentsOfURL: fileURL, fileTypeHint: AVFileTypeMPEGLayer3)
+
         } catch {
             print("could not create AVAudioPlayer \(error)")
             return
         }
-        
-        NSNotificationCenter.defaultCenter().addObserver(self,
-            selector:"sessionInterrupted:",
-            name:AVAudioSessionInterruptionNotification,
-            object:avPlayer)
         
         print("playing \(fileURL)")
         avPlayer.delegate = self
@@ -74,28 +76,80 @@ class Sound : NSObject {
         avPlayer.volume = 1.0
     }
     
-    
-    // MARK: notification callbacks
-    func sessionInterrupted(notification:NSNotification) {
-        print("audio session interrupted")
-        guard let p = notification.object as? AVAudioPlayer else {
-            print("weirdness. notification object was not AVAudioPlayer")
-            return
-        }
-        p.stop()
+    func addObservers() {
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(sessionRouteChange(_:)),
+                                               name: NSNotification.Name.AVAudioEngineConfigurationChange,
+                                               object: self.avPlayer)
+        
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(sessionRouteChange(_:)),
+                                               name: NSNotification.Name.AVAudioSessionInterruption,
+                                               object: self.avPlayer)
+        
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(sessionRouteChange(_:)),
+                                               name: NSNotification.Name.AVAudioSessionRouteChange,
+                                               object: self.avPlayer)
     }
+    
+    func removeObservers() {
+        NotificationCenter.default.removeObserver(self,
+                                                  name: NSNotification.Name.AVAudioEngineConfigurationChange,
+                                                  object: nil)
+        
+        NotificationCenter.default.removeObserver(self,
+                                                  name: NSNotification.Name.AVAudioSessionInterruption,
+                                                  object: nil)
+        
+        NotificationCenter.default.removeObserver(self,
+                                                  name: NSNotification.Name.AVAudioSessionRouteChange,
+                                                  object: nil)
+    }
+    
+    @objc
+    func sessionRouteChange(_ notification: Notification) {
+        print("sessionRouteChange")
+        if let player = notification.object as? AVAudioPlayer {
+            player.stop()
+        }
+        
+        if let userInfo = notification.userInfo as? [String: Any?] {
+            
+            if let reason = userInfo[AVAudioSessionRouteChangeReasonKey] as? AVAudioSessionRouteChangeReason {
+                
+                print("audio session route change reason \(reason)")
+                
+                switch reason {
+                case .categoryChange: print("CategoryChange")
+                case .newDeviceAvailable:print("NewDeviceAvailable")
+                case .noSuitableRouteForCategory:print("NoSuitableRouteForCategory")
+                case .oldDeviceUnavailable:print("OldDeviceUnavailable")
+                case .override: print("Override")
+                case .wakeFromSleep:print("WakeFromSleep")
+                case .unknown:print("Unknown")
+                case .routeConfigurationChange:print("RouteConfigurationChange")
+                }
+            }
+            
+            if let previous = userInfo[AVAudioSessionRouteChangePreviousRouteKey] {
+                print("audio session route change previous \(String(describing: previous))")
+            }
+        }
+    }
+    
     
 }
 
 
 // MARK: AVAudioPlayerDelegate
-extension Sound : AVAudioPlayerDelegate {
-    func audioPlayerDidFinishPlaying(player: AVAudioPlayer, successfully flag: Bool) {
+extension Sound: AVAudioPlayerDelegate {
+    func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
         print("finished playing \(flag)")
     }
     
     
-    func audioPlayerDecodeErrorDidOccur(player: AVAudioPlayer, error: NSError?) {
+    func audioPlayerDecodeErrorDidOccur(_ player: AVAudioPlayer, error: Error?) {
         if let e = error {
             print("\(e.localizedDescription)")
         }

@@ -10,7 +10,7 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    var sound:Sound!
+    var sound: Sound!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,8 +24,7 @@ class ViewController: UIViewController {
     }
 
 
-    @IBAction func togglePlayer(sender: UIButton) {
+    @IBAction func togglePlayer(_ sender: UIButton) {
         sound.toggleAVPlayer()
     }
 }
-
